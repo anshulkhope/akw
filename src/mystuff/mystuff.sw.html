@@ -1,0 +1,106 @@
+<sew-navtabs name="mystuff" *change="getAtab">
+    <sew-navtabs-item name="software">
+        Software
+    </sew-navtabs-item>
+    <sew-navtabs-item name="games">
+        Games
+    </sew-navtabs-item>
+    <sew-navtabs-item name="videos">
+        Videos
+    </sew-navtabs-item>
+</sew-navtabs>
+
+<sew-navtabs-content name="content_software" group="mystuff" style="text-align:center">
+    <sew-text sizing="h3">Calculate HCF (C)</sew-text>
+    <iframe 
+    width="100%"
+    height="350"
+    frameborder="0"
+    src="data:text/html;,
+    <body><script src='https://gist.github.com/anshulkhope/7ac9601f56df58f8229da575194119f7.js'></script>
+    </body>"></iframe>
+
+    <!---->
+    <sew-text sizing="h3">My first command-line snake game (C++)</sew-text>
+    <iframe 
+    width="100%"
+    height="350"
+    frameborder="0"
+    src="data:text/html;,
+    <body><script src='https://gist.github.com/anshulkhope/b77f6ee9ea87bba05452fbfae7fff902.js'></script>
+    </body>"></iframe>
+
+    <!---->
+    <sew-text sizing="h3">A text TicTactoe game (Java)</sew-text>
+    <iframe 
+    width="100%"
+    height="350"
+    frameborder="0"
+    src="data:text/html;,
+    <body><script src='https://gist.github.com/anshulkhope/91131ba9c9ab1caf433be87860f9ce87.js'></script>
+    </body>"></iframe>
+
+    <!---->
+    <sew-text sizing="h3">A graphical game template in LWJGL (Java)</sew-text>
+    <iframe 
+    width="100%"
+    height="350"
+    frameborder="0"
+    src="data:text/html;,
+    <body><script src='https://gist.github.com/anshulkhope/80e4bac0265d330f0f151ecd029f7dbc.js'></script>
+    </body>"></iframe>
+
+    <!---->
+    <sew-text sizing="h3">My first graphical snakegame in PyGame (Java)</sew-text>
+    <iframe 
+    width="100%"
+    height="350"
+    frameborder="0"
+    src="data:text/html;,
+    <body><script src='https://gist.github.com/anshulkhope/5744a5e2d97b4c7a95a0c085fb9e66dc.js'></script>
+    </body>"></iframe>
+
+    <div class="align-center">
+        <p>
+            If the program is giving an error with 'pygame' then you will have to install pygame as it may not be in already installed with python. If you want to install it through the command prompt then you can run the following commands. 
+            
+            <code>
+                <trusr>$</trusr> <cmd>pip</cmd> install pygame
+            </code>
+
+            <br>OR (if you're on Linux)
+            <code>
+                <trusr>$</trusr> <cmd>pip3</cmd> install pygame
+            </code>
+            <br>OR
+            
+            <code>
+                <trusr>$</trusr> <cmd>python</cmd> -m pip install pygame
+            </code>
+            <br>
+            If you don't have python then you will have to download it through its
+            <sew-link href="https://www.python.org" target="_blank">website</sew-link>.
+        </p>
+        <h3>OR</h3>
+        <p>
+            Download the compiled game (EXE, Windows x86_64).<br>
+            <sew-button color="primary" *download="https://www.anshulkhope.com/storage/app/media/download/pyGam.exe">Download</sew-button>
+        </p>
+    </div>
+
+</sew-navtabs-content>
+
+<sew-navtabs-content name="content_games" group="mystuff">
+    <sew-container alignment="center">
+        <sew-text sizing="h1">Coming Soon</sew-text>
+        <sew-text>
+            Check in later!
+        </sew-text>
+    </sew-container>
+</sew-navtabs-content>
+<sew-navtabs-content name="content_videos" group="mystuff">
+    
+    Check out my videos <sew-link href="https://www.youtube.com/channel/UCg-bEM3aftXP1weOsqkYyKg"
+    target="_blank">here</sew-link>.
+    
+</sew-navtabs-content>

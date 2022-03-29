@@ -1,0 +1,10 @@
+{
+  "name": "akw",
+  "version": "1.0.0",
+  "description": "Anshu Khope's Webspace",
+  "scripts": {
+    "start": "sew dev"
+  },
+  "author": "Anshul Khope",
+  "license": "MIT"
+}
