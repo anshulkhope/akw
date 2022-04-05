@@ -1,8 +1,8 @@
 class CovidAlertPage {
-    title = 'Covid Alert | AKW';
-    viewUrl = 'covid-alert/covid-alert';
+  title = 'Covid Alert | AKW';
+  viewUrl = 'covid-alert/covid-alert';
 
-   init() {}
+ init() {}
 }
 
 const _swComponent = CovidAlertPage;

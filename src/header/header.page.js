@@ -1,7 +1,7 @@
 class HeaderPage {
-    viewUrl = 'header/header';
+  viewUrl = 'header/header';
 
-    init() {}
+  init() {}
 }
 
 const _swComponent = HeaderPage;

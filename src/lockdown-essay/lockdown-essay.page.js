@@ -1,8 +1,8 @@
 class LockdownEssayPage {
-    title = 'Lockdown Essay | AKW';
-    viewUrl = 'lockdown-essay/lockdown-essay';
+  title = 'Lockdown Essay | AKW';
+  viewUrl = 'lockdown-essay/lockdown-essay';
 
-    init() {}
+  init() {}
 }
 
 const _swComponent = LockdownEssayPage;

@@ -1,8 +1,8 @@
 class HomePage {
-    title = 'Home | AKW';
-    viewUrl = 'home/home';
+  title = 'Home | AKW';
+  viewUrl = 'home/home';
 
-    init() {}
+  init() {}
 }
 
 const _swComponent = HomePage;

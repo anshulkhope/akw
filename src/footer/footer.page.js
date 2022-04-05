@@ -1,7 +1,7 @@
 class FooterPage {
-    viewUrl = 'footer/footer';
+  viewUrl = 'footer/footer';
 
-    init() {}
+  init() {}
 }
 
 const _swComponent = FooterPage;

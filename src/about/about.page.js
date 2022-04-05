@@ -1,14 +1,14 @@
 class AboutPage {
-    title = 'About | AKW';
-    viewUrl = 'about/about';
+  title = 'About | AKW';
+  viewUrl = 'about/about';
 
-    textArea = sew.elements.get('fileout');
+  textArea = sew.elements.get('fileout');
 
-    init() {}
+  init() {}
 
-    showFileContent(content) {
-        this.textArea.value = sew.getFileData(content);
-    }
+  showFileContent(content) {
+      this.textArea.value = sew.getFileData(content);
+  }
 }
 
 const _swComponent = AboutPage;
