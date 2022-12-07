@@ -1,17 +1,21 @@
-sew.app.init({
-  pages: {
-      'home': sew.loadComponent('home/home.page.js'),
-      'about': sew.loadComponent('about/about.page.js'),
-      'covid-alert': sew.loadComponent('covid-alert/covid-alert.page.js'),
-      'lockdown-essay': sew.loadComponent('lockdown-essay/lockdown-essay.page.js'),
-      'mystuff': sew.loadComponent('mystuff/mystuff.page.js'),
-      'header': sew.loadComponent('header/header.page.js'),
-      'footer': sew.loadComponent('footer/footer.page.js'),
-  },
-  appPreferences: {
-      icon: 'https://www.anshulkhope.com/themes/rainlab-vanilla/assets/img/favicon-32x32.png',
-      mainView: ''
-  }
-});
+const Routes = {
+  'home': 'home/home.page.js',
+  'about': ('about/about.page.js'),
+  'lockdown-essay': ('lockdown-essay/lockdown-essay.page.js'),
+  'mystuff': ('mystuff/mystuff.page.js'),
+}
 
-sew.addStyleRefs('/src/styles.css');
+const App = new av.App(
+  Routes,
+  {
+    icon: 'https://www.anshulkhope.com/themes/rainlab-vanilla/assets/img/favicon-32x32.png',
+    verbose: 'high',
+  }
+);
+
+av.app.init(App);
+
+av.elements.ui.addStyleRefs('/src/styles.css');
+
+let colorStyleText = 'color:red;font-size:2rem;font-weight:600;background-color:yellow';
+console.log('%cWelcome to AKW!', colorStyleText);

@@ -2,7 +2,9 @@ class CovidAlertPage {
   title = 'Covid Alert | AKW';
   viewUrl = 'covid-alert/covid-alert';
 
- init() {}
+  constructor() {
+  }
+  onInit() {}
 }
 
-const _swComponent = CovidAlertPage;
+av.createPage(CovidAlertPage, 'covid-alert');

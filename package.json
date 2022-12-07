@@ -1,9 +1,9 @@
 {
   "name": "akw",
   "version": "1.0.0",
-  "description": "Anshu Khope's Webspace",
+  "description": "Anshul Khope's Webspace",
   "scripts": {
-    "start": "sew dev"
+    "start": "http-server -c-1 -o"
   },
   "author": "Anshul Khope",
   "license": "MIT"

@@ -1,12 +1,12 @@
 class MyStuffPage {
-    title = 'MyStuff | AKW';
-    viewUrl = 'mystuff/mystuff';
+  title = 'MyStuff | AKW';
+  viewUrl = 'mystuff/mystuff';
 
-    init() {}
-
-    getAtab(tab) {
-        console.log(tab);
-    }
+  constructor() {
+  }
+  onInit() {
+    scroll({top: 0, behavior: 'smooth'});
+  }
 }
 
-const _swComponent = MyStuffPage;
+av.createPage(MyStuffPage, 'mystuff');

@@ -2,13 +2,15 @@ class AboutPage {
   title = 'About | AKW';
   viewUrl = 'about/about';
 
-  textArea = sew.elements.get('fileout');
+  textArea = $element('fileout');
 
-  init() {}
+  constructor() {
+  }
+  onInit() {}
 
   showFileContent(content) {
-      this.textArea.value = sew.getFileData(content);
+      this.textArea.value = av.types.decodeFile(content);
   }
 }
 
-const _swComponent = AboutPage;
+av.createPage(AboutPage, 'about');

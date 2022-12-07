@@ -1,36 +1,41 @@
-<sew-container class="sew-color-info">
-  <sew-text jumbotron color="light">
+<av-container bgColor="info">
+  <av-text jumbotron color="light">
       About Me
-  </sew-text>
-  <sew-text color="light" sizing="h4">
+  </av-text>
+  <av-text color="light" sizing="h4">
       I am passionate about various programming languages.
-  </sew-text>
+  </av-text>
   <hr />
-  <sew-text color="light">
+  <av-text color="light">
       Hi! I am Anshul Rajendra Khope (ARK). I am 12 years old. I am currently studying in 7th grade. I am very passionate about programming languages. My all time favourite languages are C#, Python, Java and C/C++. Until now I have programed games, game engines and softwares with the help of C++ and C#. I live in India.
-  </sew-text>
+  </av-text>
 
-  <sew-img src="https://www.anshulkhope.com/themes/rainlab-vanilla/assets/img/profilenew.jpg"
-      alt="Me" size="14rem" pads="50px" sw-class="zoom">
-  </sew-img>
+  <av-container small flex flex-alignment="center">
+		<av-card no-shadow>
+			<av-card-head>
+				<av-card-title></av-card-title>
+				<av-img src="https://anshulkhope.com/themes/rainlab-vanilla/assets/img/profilenew.jpg"
+					alt="Abra ka-dabra" size="300px" childProps='{"class": "zoom"}'></av-img>
+			</av-card-head>
+			<av-card-body>
+				That's me
+			</av-card-body>
+		</av-card>
+	</av-container>
 
-  <sew-text color="light">
-      That's me
-  </sew-text>
-
-  <sew-container alignment="center">
-      <sew-button color="danger" route="lockdown-essay" ripple>Check out an essay i wrote!</sew-button>
-  </sew-container>
+  <av-container small alignment="center">
+      <av-button color="danger" route="lockdown-essay" ripple>Check out an essay i wrote!</av-button>
+  </av-container>
 
   <hr>
-  <sew-text color="light">
+  <av-text color="light">
       So now if you'll be wondering, my webspace looks new, doesn't it? Well, before it was
       completely vanilla JS + Bootstrap for the UI. Now, it's
       now made in my <u>own framework</u>, called... 
-      <div class="sew-color-primary">
-          <sew-text sizing="h3" style="margin-left:.8rem" color="info">Sew</sew-text>
-      </div>
+      <av-container small class="av-color-primary">
+          <av-text sizing="h3" color="info">A Visual</av-text>
+      </av-container>
       (You can Inspect Element and see for yourself the
       structure)
-  </sew-text>
-</sew-container>
+  </av-text>
+</av-container>

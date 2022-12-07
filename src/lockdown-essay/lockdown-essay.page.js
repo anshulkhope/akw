@@ -2,7 +2,12 @@ class LockdownEssayPage {
   title = 'Lockdown Essay | AKW';
   viewUrl = 'lockdown-essay/lockdown-essay';
 
-  init() {}
+  constructor() {
+  }
+
+  onInit() {
+    console.log($element('sewHelp'));
+  }
 }
 
-const _swComponent = LockdownEssayPage;
+av.createPage(LockdownEssayPage, 'lockdown-essay');

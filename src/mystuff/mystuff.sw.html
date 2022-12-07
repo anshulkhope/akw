@@ -1,17 +1,17 @@
-<sew-navtabs name="mystuff" *change="getAtab">
-    <sew-navtabs-item name="software">
+<av-navtabs name="mystuff">
+    <av-navtabs-item name="software">
         Software
-    </sew-navtabs-item>
-    <sew-navtabs-item name="games">
+    </av-navtabs-item>
+    <av-navtabs-item name="games">
         Games
-    </sew-navtabs-item>
-    <sew-navtabs-item name="videos">
+    </av-navtabs-item>
+    <av-navtabs-item name="videos">
         Videos
-    </sew-navtabs-item>
-</sew-navtabs>
+    </av-navtabs-item>
+</av-navtabs>
 
-<sew-navtabs-content name="content_software" group="mystuff" style="text-align:center">
-    <sew-text sizing="h3">Calculate HCF (C)</sew-text>
+<av-navtabs-content name="content_software" group="mystuff" style="text-align:center">
+    <av-text sizing="h3">Calculate HCF (C)</av-text>
     <iframe 
     width="100%"
     height="350"
@@ -21,7 +21,7 @@
     </body>"></iframe>
 
     <!---->
-    <sew-text sizing="h3">My first command-line snake game (C++)</sew-text>
+    <av-text sizing="h3">My first command-line snake game (C++)</av-text>
     <iframe 
     width="100%"
     height="350"
@@ -31,7 +31,7 @@
     </body>"></iframe>
 
     <!---->
-    <sew-text sizing="h3">A text TicTactoe game (Java)</sew-text>
+    <av-text sizing="h3">A text TicTactoe game (Java)</av-text>
     <iframe 
     width="100%"
     height="350"
@@ -41,7 +41,7 @@
     </body>"></iframe>
 
     <!---->
-    <sew-text sizing="h3">A graphical game template in LWJGL (Java)</sew-text>
+    <av-text sizing="h3">A graphical game template in LWJGL (Java)</av-text>
     <iframe 
     width="100%"
     height="350"
@@ -51,7 +51,7 @@
     </body>"></iframe>
 
     <!---->
-    <sew-text sizing="h3">My first graphical snakegame in PyGame (Java)</sew-text>
+    <av-text sizing="h3">My first graphical snakegame in PyGame (Java)</av-text>
     <iframe 
     width="100%"
     height="350"
@@ -79,28 +79,26 @@
             </code>
             <br>
             If you don't have python then you will have to download it through its
-            <sew-link href="https://www.python.org" target="_blank">website</sew-link>.
+            <av-link href="https://www.python.org" mat="none" target="_blank">website</av-link>.
         </p>
         <h3>OR</h3>
         <p>
             Download the compiled game (EXE, Windows x86_64).<br>
-            <sew-button color="primary" *download="https://www.anshulkhope.com/storage/app/media/download/pyGam.exe">Download</sew-button>
+            <av-button color="primary" *download="https://www.anshulkhope.com/storage/app/media/download/pyGam.exe" ripple>Download</av-button>
         </p>
     </div>
 
-</sew-navtabs-content>
+</av-navtabs-content>
 
-<sew-navtabs-content name="content_games" group="mystuff">
-    <sew-container alignment="center">
-        <sew-text sizing="h1">Coming Soon</sew-text>
-        <sew-text>
-            Check in later!
-        </sew-text>
-    </sew-container>
-</sew-navtabs-content>
-<sew-navtabs-content name="content_videos" group="mystuff">
+<av-navtabs-content name="content_games" group="mystuff">
+    <av-container alignment="center">
+        <av-text sizing="h1">Coming Soon</av-text>
+        <av-text style="color:#8f8f8f">Games will soon be moved to anshulkhope.com. For now visit <av-link href="https://games.anshulkhope.com" target="_blank">games.anshulkhope.com</av-link></av-text>
+    </av-container>
+</av-navtabs-content>
+<av-navtabs-content name="content_videos" group="mystuff">
     
-    Check out my videos <sew-link href="https://www.youtube.com/channel/UCg-bEM3aftXP1weOsqkYyKg"
-    target="_blank">here</sew-link>.
+    Check out my videos <av-link href="https://www.youtube.com/channel/UCg-bEM3aftXP1weOsqkYyKg"
+    target="_blank">here</av-link>.
     
-</sew-navtabs-content>
+</av-navtabs-content>

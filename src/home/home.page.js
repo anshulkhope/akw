@@ -1,8 +1,13 @@
-class HomePage {
+class HomeModule {
   title = 'Home | AKW';
   viewUrl = 'home/home';
 
-  init() {}
+  constructor() {
+  }
+
+  onInit() {
+
+  }
 }
 
-const _swComponent = HomePage;
+av.createPage(HomeModule, 'home');
