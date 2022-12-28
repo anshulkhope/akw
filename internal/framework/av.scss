@@ -24,7 +24,7 @@ $card-shadow: $shadow-light;
 $card-background: #fff;
 $scrollbar-color: $scrollbar-light;
 
-$font: -apple-system, BlinkMacSystemFont, "Montserrat", Oxygen-Sans, Ubuntu, Cantarell,
+$font: -apple-system, BlinkMacSystemFont, "Open Sans", Oxygen-Sans, Ubuntu, Cantarell,
   "Helvetica Nue", sans-serif;
 
 :root,
@@ -34,7 +34,7 @@ body {
 }
 
 .av-body-fixednav-pads {
-  padding-top: 3.05rem;
+  padding-top: 4.05rem;
 }
 
 hr {
@@ -87,8 +87,9 @@ input[type=file] {
   outline: none;
   font-family: $font;
   text-decoration: none;
-  margin-right: .7rem;
-  margin-left: .7rem;
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
+  margin-left: 0.3rem;
   transition-duration: 200ms;
 }
 
@@ -249,10 +250,6 @@ input[type=file] {
   color: $danger;
 }
 
-.av-text {
-  font-size: calc(16px + 0.096vw);
-}
-
 .av-text-default {
   color: $text-color;
 }
@@ -319,7 +316,7 @@ input[type=file] {
 
 .av-jumbo-text {
   display: block;
-  font-size: calc(1.375rem + 3vw);
+  font-size: 2.9rem;
   margin-bottom: .9rem;
   margin-top: .9rem;
 }
@@ -359,7 +356,7 @@ input[type=file] {
 
 [sizing=h1] {
   display: block;
-  font-size: calc(1.95rem + 1vw);
+  font-size: 1.95rem;
   font-weight: 500;
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
@@ -409,52 +406,6 @@ input[type=file] {
   margin-right: 2rem;
 }
 
-.av-container-transparent {
-  padding-left: 7rem;
-  height: 30rem;
-  display: flex;
-  align-items: center;
-  flex-flow: row;
-  flex-wrap: wrap;
-  align-content: center;
-  background-color: rgba(0, 0, 0, 0.6);
-}
-
-.av-flex-center {
-  display: flex;
-  align-content: space-around;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  align-items: center;
-  flex-direction: row;
-}
-
-.av-flex-start {
-  display: flex;
-  align-content: space-around;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  align-items: center;
-  flex-direction: row;
-}
-
-.av-flex-end {
-  display: flex;
-  align-content: space-around;
-  justify-content: flex-end;
-  flex-wrap: wrap;
-  align-items: center;
-  flex-direction: row;
-}
-
-.av-parallax-parent {
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  padding: 0;
-}
-
 .av-nav {
   display: flex;
   flex-wrap: wrap;
@@ -462,13 +413,9 @@ input[type=file] {
   justify-content: space-between;
   padding-top: 0.3rem;
   padding-bottom: 0.3rem;
-  box-shadow: 0 3px 4px 0 #00000025;
+  box-shadow: 0px 3px 4px 0px #00000025;
   flex-flow: row nowrap;
   max-height: 45px;
-}
-
-.av-nav-fade {
-  transition-duration: 0.3s;
 }
 
 .av-nav-mobile {
@@ -563,25 +510,6 @@ input[type=file] {
   .av-mobile-nav-toggle {
     display: block !important;
   }
-
-  .av-container-transparent {
-    padding-left: 3rem !important;
-  }
-
-  .av-card-deck {
-    display: flex !important;
-    flex-flow: row wrap !important;
-    flex-direction: column !important;
-    align-content: center;
-    justify-content: space-around;
-    align-items: stretch;
-    flex-wrap: wrap !important;
-    width: 100%;
-    .av-card {
-      width: auto !important;
-      margin-bottom: 30px !important;
-    }
-  }
 }
 
 .av-mobile-nav-toggle {
@@ -590,17 +518,13 @@ input[type=file] {
   position: absolute;
   top: 0;
   right: 0;
-  background: rgba(0, 0, 0, 0) url(/src/images/menu.svg) no-repeat center center;
+  background: #34495E url(/src/images/menu.svg) no-repeat center center;
   height: 35px;
   width: 35px;
   border-radius: 5px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
-  padding: 0.7rem .5rem .3rem;
-
-  &:hover {
-    box-shadow: 0 3px 3px 3px rgba(0, 0, 0, 0.3);
-  }
+  padding: .3rem;
 }
 
 [navVisible] {
@@ -938,7 +862,6 @@ input[type=file] {
   border-bottom: 1px solid rgba(255, 255, 255, 0.125);
 
   av-img {
-    display: flex;
     img {
       flex-shrink: 0;
       width: 100%;
@@ -953,20 +876,18 @@ input[type=file] {
   color: $text-color;
 }
 
-.av-card-noshadow {
-  box-shadow: none !important;
-}
-
 .av-card-deck {
-  display: flex;
-  flex-flow: row wrap;
+  display: flex !important;
+  flex-flow: row nowrap !important;
+  padding-right: -15px !important;
+  padding-left: -15px !important;
   .av-card {
     flex: 1 0 0%;
     margin-right: 15px;
     margin-left: 15px;
     margin-bottom: 15px;
     height: 100%;
-    width: auto;
+    width: 33.3%;
     float: left;
   }
 }

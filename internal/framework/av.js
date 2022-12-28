@@ -21,6 +21,36 @@
 'use strict';
 
 /**
+ * Pre-defining Item class for UI objects
+ */
+
+/**
+ *
+ */
+class Item extends HTMLElement {
+	constructor() {
+		super();
+
+		if (this.hasAttribute('mat')) {
+			this.classList.add('av-mat-item');
+		}
+		this.addEventListener('click', () => {
+			if (this.hasAttribute('route')) {
+				av.router.navigate(this.getAttribute('route'));
+			}
+			if (this.hasAttribute('*click')) {
+				const execute = new Function(`
+							av.router.pages['${av.app.getActivePage()}'].then((c) => {
+								c.ModuleCode.${this.getAttribute('*click')};
+							});
+							`);
+				execute();
+			}
+		});
+	}
+}
+
+/**
  * The main ***A Visual*** Object. Contains sub-classes for UI-elements, router and
  * other functions.
  */
@@ -43,7 +73,7 @@ const av = {
 	 */
 	types: {
 
-		UNDEFINED: null,
+		UNDEFINED: undefined || null,
 
 		/**
 		 * Decodes the string given as per url-encoding.
@@ -150,7 +180,7 @@ const av = {
 		 */
 		start: async (app) => {
 
-			document.querySelector('base').href = av.router.rootPath;
+			av.router.rootPath = document.querySelector('base').href;
 
 			Object.keys(app.pages).forEach((page, index) => {
 				av.router.pages[page] = av.loadComponent(Object.values(app.pages)[index]).then(() => {
@@ -177,7 +207,7 @@ const av = {
 		 * @param {string} page The page name.
 		 */
 		navigate: async (page) => {
-			if (av.router.pages[page] === undefined || null) {
+			if (av.router.pages[page] === undefined | null) {
 				av.app.error('Unknown Error', 'router');
 
 				const loader = av.elements.create('av-overlay', document.body,
@@ -205,7 +235,7 @@ const av = {
 						setTimeout(() => {
 							component.init();
 						}, 400);
-					}).catch(() => {});
+					}).catch(err => {});
 				}
 			}
 		},
@@ -253,7 +283,6 @@ const av = {
 				});
 			});
 			av.router.pages[routeName] = component;
-			return component;
 		},
 	},
 
@@ -319,7 +348,7 @@ const av = {
 				av.app.rootElement.classList.add('av-theme-' + av.app.rootElement.getAttribute('theme'));
 
 				av.elements.ui.addStyleRefs('internal/framework/av.css');
-				av.elements.ui.addStyleRefs('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+				av.elements.ui.addStyleRefs('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
 				av.elements.ui.loadStyles(); 
 
@@ -345,7 +374,7 @@ const av = {
 
 		/**
 		 * The root element of the app. Inside this element, all UI functions occur.
-		 * @type HTMLElement | Element
+		 * @type HTMLElement | Element | null
 		 */
 		rootElement: document.querySelector('av-app'),
 
@@ -395,6 +424,7 @@ const av = {
 			 * Define all the A Visual UI elements.
 			 */
 			init: () => {
+				customElements.define('av-item', Item);
 				customElements.define('av-button', av.elements.ui.Button);
 				customElements.define('av-text', av.elements.ui.Text);
 				customElements.define('av-container', av.elements.ui.Container);
@@ -425,7 +455,7 @@ const av = {
 
 			/**
 			 * Add a CSS stylesheet reference to the `stylesToLoad` array.
-			 * @param {string} href 
+			 * @param {*} href 
 			 */
 			addStyleRefs: (href) => {
 				av.elements.ui.stylesToLoad.push(href);
@@ -433,6 +463,8 @@ const av = {
 
 			/**
 			 * Load all CSS stylesheets referenced to the application.
+			 * 
+			 * @param {string} href The URL/path to the stylesheet.
 			 */
 			loadStyles: () => {
 				for (let i = 0; i < av.elements.ui.stylesToLoad.length; i++) {
@@ -475,6 +507,7 @@ const av = {
 			 * @param  {string} infomsg The message shown in the info.
 			 */
 			showQuickInfo: (infomsg) => {
+
 				if (document.querySelector('av-info'))
 					document.querySelector('av-info').remove();
 
@@ -502,11 +535,9 @@ const av = {
 			/**
 			 * Define simple text with a few tweaks.
 			 */
-			Text: class extends HTMLElement {
+			Text: class extends Item {
 				constructor() {
 					super();
-
-					this.classList.add('av-text');
 
 					if (this.hasAttribute('paragraph')) {
 						this.classList.add('av-paragraph');
@@ -532,7 +563,7 @@ const av = {
 			/**
 			 * Define a button with color, outline and a route inside the app to load.
 			 */
-			Button: class extends HTMLElement {
+			Button: class extends Item {
 				constructor() {
 					super();
 
@@ -546,23 +577,13 @@ const av = {
 						this.classList.add('av-outline-color-' + this.getAttribute('outline'));
 					}
 
-					this.addEventListener('mousedown', () => {
+					this.onmousedown = () => {
 						if (this.classList.contains('av-button-hovered')) {
 							this.classList.remove('av-button-hovered');
 						}
-					});
-					this.addEventListener('click', (e) => {
-						if (this.hasAttribute('route')) {
-							av.router.navigate(this.getAttribute('route'));
-						}
-						if (this.hasAttribute('*exec')) {
-							const execute = new Function(`
-							av.router.pages['${av.app.getActivePage()}'].then((c) => {
-								c.ModuleCode.${this.getAttribute('*exec')};
-							});
-							`);
-							execute();
-						}
+					};
+					this.onclick = (e) => {
+
 						if (this.hasAttribute('*download')) {
 							const a = av.elements.create('a', document.body,
 								null, false);
@@ -586,14 +607,14 @@ const av = {
 							}, 250);
 
 						}
-					});
+					}
 				}
 			},
 
 			/**
 			 * A link, basically associated with a text element.
 			 */
-			Link: class extends HTMLElement {
+			Link: class extends Item {
 				constructor() {
 					super();
 
@@ -641,7 +662,7 @@ const av = {
 			/**
 			 * A simple container element, provided with some margin spacings.
 			 */
-			Container: class extends HTMLElement {
+			Container: class extends Item {
 				constructor() {
 					super();
 
@@ -659,24 +680,6 @@ const av = {
 						this.classList.add('align-' + this.getAttribute('alignment'));
 					}
 
-					if (this.hasAttribute('flex')) {
-						this.style.display = 'flex';
-						if (this.hasAttribute('flex-alignment')) {
-							this.classList.add('av-flex-' + this.getAttribute('flex-alignment'));
-						}
-						this.removeAttribute('flex');
-					}
-
-					if (this.hasAttribute('parallax')) {
-						if (this.getAttribute('parallax') === 'parent') {
-							this.classList.add('av-parallax-parent');
-							this.style.backgroundImage = 'url(' + this.getAttribute('parallax-image') + ')';
-						}
-						if (this.getAttribute('parallax') === 'child') {
-							this.classList.add('av-container-transparent');
-						}
-					}
-
 					if (this.hasAttribute('jumbotron-wrapper')) {
 						this.classList.add('av-jumbotron-wrapper');
 					}
@@ -687,7 +690,7 @@ const av = {
 			/**
 			 * Creates a navbar with customizable colors. Also can be a fixed-top navbar.
 			 */
-			Navbar: class extends HTMLElement {
+			Navbar: class extends Item {
 				constructor() {
 					super();
 
@@ -700,7 +703,10 @@ const av = {
 					}
 
 					const e = av.elements.create('av-button-unused', this.querySelector('av-navbar-body'), '', false);
-					e.classList.add('av-mobile-nav-toggle', 'av-mat-item');
+					e.classList.add('av-button');
+					e.classList.add('av-color-danger');
+					e.classList.add('av-mat-item');
+					e.classList.add('av-mobile-nav-toggle');
 
 					e.onclick = () => {
 						this.querySelector('av-nav-list').toggleAttribute('navVisible');
@@ -717,33 +723,13 @@ const av = {
 					this.querySelectorAll('av-nav-item').forEach(navItem => {
 						navItem.classList.add('av-nav-item');
 					});
-
-					if (this.hasAttribute('fadeTo')) {
-						const checkScroll = () => {
-							this.classList.add('av-nav-fade');
-							if (document.scrollingElement.scrollTop < 60) {
-								this.classList.add('av-color-' + this.getAttribute('fadeTo'));
-								this.classList.remove('av-color-' + this.getAttribute('color'));
-							} else {
-								this.classList.remove('av-color-' + this.getAttribute('fadeTo'));
-								this.classList.add('av-color-' + this.getAttribute('color'));
-							}
-						}
-
-						checkScroll();
-						document.addEventListener('scroll', () => {
-							checkScroll();
-						});
-					}
-
-					this.removeAttribute('fixed');
 				}
 			},
 
 			/**
 			 * A classic Card element.
 			 */
-			Card: class extends HTMLElement {
+			Card: class extends Item {
 				constructor() {
 					super();
 
@@ -753,17 +739,13 @@ const av = {
 					this.querySelector('av-card-body').classList.add('av-card-body');
 
 					this.querySelector('av-card-title').classList.add('av-card-title');
-
-					if (this.hasAttribute('no-shadow')) {
-						this.classList.add('av-card-noshadow');
-					}
 				}
 			},
 
 			/**
 			 * A Modal.
 			 */
-			Modal: class extends HTMLElement {
+			Modal: class extends Item {
 				constructor() {
 					super();
 
@@ -793,7 +775,7 @@ const av = {
 			/**
 			 * Insert an iframe-like page into the document (not an iframe).
 			 */
-			Page: class extends HTMLElement {
+			Page: class extends Item {
 				constructor() {
 					super();
 
@@ -811,7 +793,7 @@ const av = {
 			 * A plain element. If you just want a simple element on which you can toggle
 			 * visibility, use this one!
 			 */
-			Span: class extends HTMLElement {
+			Span: class extends Item {
 				constructor() {
 					super();
 
@@ -877,7 +859,7 @@ const av = {
 			 * loading spinner until the complete image is loaded, also with no-effort padding
 			 * and size.
 			 */
-			Img: class extends HTMLElement {
+			Img: class extends Item {
 				constructor() {
 					super();
 
@@ -917,13 +899,6 @@ const av = {
 						this.removeAttribute('drag');
 					}
 
-					if (this.hasAttribute('parallax')) {
-						this.style.backgroundAttachment = 'fixed';
-						this.style.backgroundPosition = 'center';
-						this.style.backgroundRepeat = 'no-repeat';
-						this.style.backgroundSize = 'cover';
-					}
-
 					if (this.hasAttribute('childProps')) {
 						let props = new Object(JSON.parse(this.getAttribute('childProps')));
 						for (let i = 0; i < Object.keys(props).length; i++) {
@@ -942,7 +917,7 @@ const av = {
 			/**
 			 * An input element with responsive and reactive change detection.
 			 */
-			Input: class extends HTMLElement {
+			Input: class extends Item {
 				constructor() {
 					super();
 
@@ -1004,7 +979,7 @@ const av = {
 			 * Similar to Navbar, but simpler and tabs aren't different pages but only elements
 			 * which have different content.
 			 */
-			Navtabs: class extends HTMLElement {
+			Navtabs: class extends Item {
 				constructor() {
 					super();
 
@@ -1021,7 +996,7 @@ const av = {
 								const fn = new Function(`
 									av.router.pages.${av.app.getActivePage()}.then((component) => {
 										const activeTab = Slm.getActiveTab(Slm.get('${this.getAttribute('name')}'));
-										component.ModuleCode.${this.getAttribute('*change')}(activeTab.getAttribute('name'));
+										new component().${this.getAttribute('*change')}(activeTab.getAttribute('name'));
 									});
 								`);
 								fn();
@@ -1040,7 +1015,7 @@ const av = {
 			/**
 			 * A list element.
 			 */
-			List: class extends HTMLElement {
+			List: class extends Item {
 				constructor() {
 					super();
 
@@ -1052,7 +1027,7 @@ const av = {
 				}
 			},
 
-			Dropdown: class extends HTMLElement {
+			Dropdown: class extends Item {
 				constructor() {
 					super();
 
@@ -1248,6 +1223,7 @@ const Spg = av.plugins;
 
 const $component = av.loadComponent;
 const $element = av.elements.get;
+
 /**
  * Thanks for peeking into the wonderous code of av :)
  */

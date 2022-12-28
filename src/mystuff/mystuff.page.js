@@ -5,7 +5,6 @@ class MyStuffPage {
   constructor() {
   }
   onInit() {
-    scroll({top: 0, behavior: 'smooth'});
   }
 }
 

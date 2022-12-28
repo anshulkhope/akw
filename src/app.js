@@ -10,6 +10,7 @@ const App = new av.App(
   {
     icon: 'https://www.anshulkhope.com/themes/rainlab-vanilla/assets/img/favicon-32x32.png',
     verbose: 'high',
+    restoreLocation: true
   }
 );
 
