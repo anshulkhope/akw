@@ -348,7 +348,7 @@ const av = {
 				av.app.rootElement.classList.add('av-theme-' + av.app.rootElement.getAttribute('theme'));
 
 				av.elements.ui.addStyleRefs('internal/framework/av.css');
-				av.elements.ui.addStyleRefs('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+				av.elements.ui.addStyleRefs('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 				av.elements.ui.loadStyles(); 
 
@@ -507,7 +507,6 @@ const av = {
 			 * @param  {string} infomsg The message shown in the info.
 			 */
 			showQuickInfo: (infomsg) => {
-
 				if (document.querySelector('av-info'))
 					document.querySelector('av-info').remove();
 
@@ -680,6 +679,24 @@ const av = {
 						this.classList.add('align-' + this.getAttribute('alignment'));
 					}
 
+					if (this.hasAttribute('flex')) {
+						this.style.display = 'flex';
+						if (this.hasAttribute('flex-alignment')) {
+							this.classList.add('av-flex-' + this.getAttribute('flex-alignment'));
+						}
+						this.removeAttribute('flex');
+					}
+
+					if (this.hasAttribute('parallax')) {
+						if (this.getAttribute('parallax') === 'parent') {
+							this.classList.add('av-parallax-parent');
+							this.style.backgroundImage = 'url(' + this.getAttribute('parallax-image') + ')';
+						}
+						if (this.getAttribute('parallax') === 'child') {
+							this.classList.add('av-container-transparent');
+						}
+					}
+
 					if (this.hasAttribute('jumbotron-wrapper')) {
 						this.classList.add('av-jumbotron-wrapper');
 					}
@@ -703,10 +720,7 @@ const av = {
 					}
 
 					const e = av.elements.create('av-button-unused', this.querySelector('av-navbar-body'), '', false);
-					e.classList.add('av-button');
-					e.classList.add('av-color-danger');
-					e.classList.add('av-mat-item');
-					e.classList.add('av-mobile-nav-toggle');
+					e.classList.add('av-button', 'av-color-danger', 'av-mat-item', 'av-mobile-nav-toggle');
 
 					e.onclick = () => {
 						this.querySelector('av-nav-list').toggleAttribute('navVisible');
@@ -723,6 +737,26 @@ const av = {
 					this.querySelectorAll('av-nav-item').forEach(navItem => {
 						navItem.classList.add('av-nav-item');
 					});
+
+					if (this.hasAttribute('fadeTo')) {
+						const checkScroll = () => {
+							this.classList.add('av-nav-fade');
+							if (document.scrollingElement.scrollTop < 60) {
+								this.classList.add('av-color-' + this.getAttribute('fadeTo'));
+								this.classList.remove('av-color-' + this.getAttribute('color'));
+							} else {
+								this.classList.remove('av-color-' + this.getAttribute('fadeTo'));
+								this.classList.add('av-color-' + this.getAttribute('color'));
+							}
+						}
+
+						checkScroll();
+						document.addEventListener('scroll', () => {
+							checkScroll();
+						});
+					}
+
+					this.removeAttribute('fixed');
 				}
 			},
 
@@ -739,6 +773,10 @@ const av = {
 					this.querySelector('av-card-body').classList.add('av-card-body');
 
 					this.querySelector('av-card-title').classList.add('av-card-title');
+
+					if (this.hasAttribute('no-shadow')) {
+						this.classList.add('av-card-noshadow');
+					}
 				}
 			},
 
@@ -899,6 +937,13 @@ const av = {
 						this.removeAttribute('drag');
 					}
 
+					if (this.hasAttribute('parallax')) {
+						this.style.backgroundAttachment = 'fixed';
+						this.style.backgroundPosition = 'center';
+						this.style.backgroundRepeat = 'no-repeat';
+						this.style.backgroundSize = 'cover';
+					}
+
 					if (this.hasAttribute('childProps')) {
 						let props = new Object(JSON.parse(this.getAttribute('childProps')));
 						for (let i = 0; i < Object.keys(props).length; i++) {
@@ -996,7 +1041,7 @@ const av = {
 								const fn = new Function(`
 									av.router.pages.${av.app.getActivePage()}.then((component) => {
 										const activeTab = Slm.getActiveTab(Slm.get('${this.getAttribute('name')}'));
-										new component().${this.getAttribute('*change')}(activeTab.getAttribute('name'));
+										component.ModuleCode.${this.getAttribute('*change')}(activeTab.getAttribute('name'));
 									});
 								`);
 								fn();
@@ -1216,14 +1261,12 @@ const av = {
 		},
 	}
 };
-
 const Sui = av.elements.ui;
 const Slm = av.elements;
 const Spg = av.plugins;
 
 const $component = av.loadComponent;
 const $element = av.elements.get;
-
 /**
  * Thanks for peeking into the wonderous code of av :)
  */
